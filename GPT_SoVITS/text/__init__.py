@@ -24,5 +24,7 @@ def cleaned_text_to_sequence(cleaned_text, version=None):
         phones = [_symbol_to_id_v1[symbol] for symbol in cleaned_text]
     else:
         phones = [_symbol_to_id_v2[symbol] for symbol in cleaned_text]
+        for p in phones:
+          print(p)
 
     return phones

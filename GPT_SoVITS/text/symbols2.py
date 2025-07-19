@@ -779,7 +779,7 @@ yue_symbols = {
     "Yyun2",
 }
 
-
+# -*- coding: utf-8 -*-
 # -*- coding: utf-8 -*-
 tw_symbols = [' ', '!', '#', '$', ',', '-', '.', '1', '2', '3', '4', '5', '7', '8', '?', '^', '_', 'a', 'ai', 'am', 
 'an', 'au', 'b', 'ch', 'chh', 'e', 'g', 'h', 'i', 'ia', 'iang', 'in', 'io', 'iong', 'ir', 'iu', 'j', 'k', 'kh', 'l', 'm', 'n', 'ng', 'nn', 'o', 'on', 'ong', 'oo', 'p', 'ph', 's', 't', 'th', 'ts', 'tsh', 'u', 'ua', 'ue', 'ui', 'un', '~', '…']
@@ -809,3 +809,47 @@ if __name__ == "__main__":
     # print(symbols) # 如果需要，可以取消註解來查看完整列表
 
 
+# symbols = [pad] + c + v + ja_symbols + pu_symbols + list(arpa)+list(ko_symbols)#+list(yue_symbols)###直接这么加yue顺序乱了
+# symbols = [pad] + c + v + ja_symbols + pu_symbols + list(arpa)
+# symbols = sorted(set(symbols))
+# # print(len(symbols))
+# symbols += ["[", "]"]  ##日文新增上升下降调型
+# symbols += sorted(list(ko_symbols))
+# symbols += sorted(list(yue_symbols))  ##新加的yue统一摆在后头#已查过开头加Y后没有重复，韩文显然不会重复
+# symbols += sorted(list(tw_symbols))
+# print(len(symbols))
+# if __name__ == "__main__":
+#     print(len(symbols))
+
+# # text/symbols2.py
+
+# import json
+# import os
+
+# # --- 【核心修正】 ---
+# # 請將此路徑修改為您最新、最成功的實驗所產生的 phone2id.json 的【絕對路徑】
+# # For Google Colab, it might look like this:
+# PHONE2ID_PATH = "/content/drive/MyDrive/GPT-SoVITS/logs/my_colab_v1/phone2id.json"
+# # --- 請務必確認以上路徑是正確的 ---
+
+# # 檢查檔案是否存在，如果不存在則報錯，避免使用錯誤的詞彙表
+# if not os.path.exists(PHONE2ID_PATH):
+#     raise FileNotFoundError(f"指定的詞彙表檔案不存在，請檢查路徑: {PHONE2ID_PATH}")
+
+# print(f"!!! Sunny's Fix: Forcing vocabulary load from {PHONE2ID_PATH} !!!")
+
+# # 從指定的 JSON 檔案讀取詞彙表
+# with open(PHONE2ID_PATH, "r", encoding="utf-8") as f:
+#     _symbol_to_id = json.load(f)
+
+# # 根據讀取的詞彙表，反向生成 symbols 列表，並確保其 ID 順序與訓練時完全一致
+# symbols = [k for k, v in sorted(_symbol_to_id.items(), key=lambda item: item[1])]
+
+# # 這個 pad 變數在部分舊代碼中可能被引用，為保險起見我們定義它
+# pad = "_"
+
+# # (可選) 在直接運行此文件時打印信息以供驗證
+# if __name__ == '__main__':
+#     print("--- 動態加載的詞彙表 ---")
+#     print(f"詞彙表來源: {PHONE2ID_PATH}")
+#     print(f"總符號數: {len(symbols)}")
