@@ -5,11 +5,6 @@
 
 ---
 
-## 📦 原始專案與修改版本
-
-- **原始專案**: [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
-- **修改版本**: [lillian-zhiyinhuang/TTS_test](https://github.com/lillian-zhiyinhuang/TTS_test)
-
 ### 🔧 修改內容（相對於原始專案）
 
 ```
